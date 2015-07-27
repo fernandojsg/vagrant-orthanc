@@ -1,0 +1,8 @@
+#
+# orthanc
+#
+class orthancpostgresql {
+
+}
+
+ 

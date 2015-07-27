@@ -12,8 +12,18 @@ node default {
   Exec["apt-update"] -> Package <| |>
     
 
-    include orthanc
-    include orthancdicomweb
-    include orthancwebviewer
+#    include orthanc
+#    include orthancdicomweb
+#    include orthancwebviewer
+
+    # Postgresql general config
+    class { 'postgresql::globals':
+      version             => "9.4",
+      manage_package_repo => true,
+      encoding             => "UTF8",
+      locale              => "en_EN.UTF-8"
+    }
+
+#    include orthancpostgresql
 
 }
