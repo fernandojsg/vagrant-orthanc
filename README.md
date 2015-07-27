@@ -2,7 +2,7 @@ Vagrant Orthanc
 ---
 **[Vagrant](https://www.vagrantup.com/)** box setup for **[Orthanc](http://www.orthanc-server.com/)** DICOM server including its official plugins and using [puppet](https://puppetlabs.com/) provisioning.
 
-This repository is based on the [OrthancDocker](https://github.com/jodogne/OrthancDocker) repository by [Sébastien Jodogne](https://github.com/jodogne) and [orthanc-vagrant](https://github.com/chafey/orthanc-vagrant) by [Chris Hafey](https://github.com/chafey).
+This repository is based on the scripts from [OrthancDocker](https://github.com/jodogne/OrthancDocker) repository by [Sébastien Jodogne](https://github.com/jodogne) and [orthanc-vagrant](https://github.com/chafey/orthanc-vagrant) by [Chris Hafey](https://github.com/chafey).
 
 ## Features
 
@@ -19,7 +19,7 @@ This repository is based on the [OrthancDocker](https://github.com/jodogne/Ortha
 
 * Download and install **[VirtualBox](https://www.virtualbox.org/wiki/Downloads)**
 * Download and install **[Vagrant](http://www.vagrantup.com/downloads.html)**
-* Clone the project into your preferred directory: `git clone --recursive http://asdfasdf.com` **(It's important to include `--recursive` to clone the submodule [vcsrepo](https://github.com/puppetlabs/puppetlabs-vcsrepo))**.
+* Clone the project into your preferred directory: `git clone --recursive git@github.com:fernandojsg/vagrant-orthanc.git` **(It's important to include `--recursive` to clone the submodule [vcsrepo](https://github.com/puppetlabs/puppetlabs-vcsrepo))**.
 * Setup the vagrant box: `vagrant up`
 * Once the VM has been created you will be able to use the Orthanc services. 
 * Additionally you can connect to the server using ssh: `vagrant ssh`
