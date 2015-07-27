@@ -25,7 +25,7 @@ class orthancwebviewer {
         require => [ Vcsrepo ['/root/orthanc-webviewer'], Exec['Build Orthanc']],
         cwd => '/root/orthanc-webviewer',
         timeout => 0,
-        logoutput => true
+        logoutput => "on_failure"
     } -> # Define the service configuration to run with upstart
     file { '/usr/share/orthanc/plugins/libOrthancWebViewer.so':
         ensure  => file,

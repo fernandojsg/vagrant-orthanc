@@ -31,7 +31,7 @@ class orthanc {
         require => [ Vcsrepo ['/root/orthanc'], File['/root/orthanc.sh'] ],
         cwd => '/root/orthanc',
         timeout => 0,
-        logoutput => true
+        logoutput => "on_failure"
     }
 
     file { ['/etc/orthanc' ]:

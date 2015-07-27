@@ -25,7 +25,7 @@ class orthancdicomweb {
         require => [ Vcsrepo ['/root/orthanc-dicomweb'], Exec['Build Orthanc']],
         cwd => '/root/orthanc-dicomweb',
         timeout => 0,
-        logoutput => true
+        logoutput => "on_failure"
     } -> # Define the service configuration to run with upstart
     file { '/usr/share/orthanc/plugins/libOrthancDicomWeb.so':
         ensure  => file,
