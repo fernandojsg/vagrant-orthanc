@@ -19,7 +19,9 @@ class orthanc {
         mode => '+X',
         source => 'puppet:///modules/orthanc/orthanc.sh', 
     }
-    
+
+    #if $orthanpostgresql::var { $x = $otherklass::var } else { $x = "" }
+
     # Clone repo in the tmp build directory
     vcsrepo { '/root/orthanc':
       ensure   => present,
@@ -47,7 +49,8 @@ class orthanc {
         owner   => "root",
         group   => "root",
         mode    => '0644',
-        source  => 'puppet:///modules/orthanc/orthanc.json',
+        content  => template('orthanc/orthanc-config.erb'),
+        #source  => 'puppet:///modules/orthanc/orthanc.json',
         notify  => Service['orthanc']
     }
 
