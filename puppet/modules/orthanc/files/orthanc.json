@@ -228,5 +228,16 @@
   // are issued. This option sets the number of seconds of inactivity
   // to wait before automatically closing a DICOM association. If set
   // to 0, the connection is closed immediately.
-  "DicomAssociationCloseDelay" : 5
+  "DicomAssociationCloseDelay" : 5,
+
+   "PostgreSQL" : {
+    "EnableIndex" : true,
+    "EnableStorage" : true,
+    "Host" : "127.0.0.1",
+    "Port" : 5432,
+    "Database" : "orthanc",
+    "Username" : "pgorthancuser",
+    "Password" : "pgorthancpass"
+  }
+
 }

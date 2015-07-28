@@ -3,8 +3,6 @@
 #
 class orthancdicomweb {
 
-#libgdcm2-dev libjpeg-dev postgresql-server-dev-all
-
     # Clone repo in the tmp build directory
     vcsrepo { '/root/orthanc-dicomweb':
       ensure   => present,
@@ -26,13 +24,12 @@ class orthancdicomweb {
         cwd => '/root/orthanc-dicomweb',
         timeout => 0,
         logoutput => "on_failure"
-    } -> # Define the service configuration to run with upstart
+    } ->
     file { '/usr/share/orthanc/plugins/libOrthancDicomWeb.so':
         ensure  => file,
         links => follow,
         source  => '/root/orthanc-dicomweb/Build/libOrthancDicomWeb.so',
         notify => Service['orthanc'],
-        #require => Exec['Build Orthanc dicomweb']
     }
 
 }
