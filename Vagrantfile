@@ -11,11 +11,11 @@ settings = {
   :guest_proj_dir => "/home/vagrant/sharedfolder",
   :memory => "1024",
   :ip => "192.168.33.10",
-  :proxy => {
-    :http => "http://10.201.32.8:8080/",
-    :https => "http://10.201.32.8:8080/",
-    :no_proxy => "localhost,127.0.0.1,10.*"
-  }
+#  :proxy => {
+#    :http => "http://10.201.32.8:8080/",
+#    :https => "http://10.201.32.8:8080/",
+#    :no_proxy => "localhost,127.0.0.1,10.*"
+#  }
 
 }
 
@@ -57,12 +57,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # argument is a set of non-required options.
   #config.vm.synced_folder "sharedfolder", settings[:guest_proj_dir], mount_options: ["dmode=777", "fmode=666"]
 
-  if Vagrant.has_plugin?("vagrant-proxyconf") && settings[:proxy]!=false
-    config.proxy.http     = settings[:proxy][:http]
-    config.proxy.https    = settings[:proxy][:https]
-    config.proxy.no_proxy = settings[:proxy][:no_proxy]
-  end  
-  
   # Enable provisioning with Puppet stand alone.  Puppet manifests
   # are contained in a directory path relative to this Vagrantfile.
   # You will need to create the manifests directory and a manifest in
@@ -75,11 +69,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     # Additional options "--verbose --debug"
 
     puppet.options = "--hiera_config /vagrant/puppet/manifests/hiera.yaml --manifestdir /tmp/vagrant-puppet/manifests"
-    puppet.facter = {
-      "http_proxy" =>  settings[:proxy][:http],
-      "https_proxy" => settings[:proxy][:https],
-      "guest_proj_dir" => settings[:guest_proj_dir]
-    }
 
   end
 end
