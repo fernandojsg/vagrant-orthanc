@@ -36,7 +36,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # accessing "localhost:8080" will access port 80 on the guest machine.
   config.vm.network "forwarded_port", guest: 8042, host: 8042
   config.vm.network "forwarded_port", guest: 4242, host: 4242
-  config.vm.network "forwarded_port", guest: 5432, host: 5432
+  # Uncomment the line below if you need to access postgresql from oustide the VM.
+  # config.vm.network "forwarded_port", guest: 5432, host: 5432
   
   # Create a private network, which allows host-only access to the machine
   # using a specific IP.
