@@ -11,12 +11,6 @@ settings = {
   :guest_proj_dir => "/home/vagrant/sharedfolder",
   :memory => "1024",
   :ip => "192.168.33.10",
-#  :proxy => {
-#    :http => "http://10.201.32.8:8080/",
-#    :https => "http://10.201.32.8:8080/",
-#    :no_proxy => "localhost,127.0.0.1,10.*"
-#  }
-
 }
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
@@ -43,6 +37,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.network "forwarded_port", guest: 80, host: 8043
   config.vm.network "forwarded_port", guest: 8042, host: 8042
   config.vm.network "forwarded_port", guest: 4242, host: 4242
+  # Uncomment the line below if you need to access postgresql from oustide the VM.
+  # config.vm.network "forwarded_port", guest: 5432, host: 5432
   
   # Create a private network, which allows host-only access to the machine
   # using a specific IP.
