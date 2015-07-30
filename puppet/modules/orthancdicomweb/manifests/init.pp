@@ -23,7 +23,8 @@ class orthancdicomweb {
         require => [ Vcsrepo ['/root/orthanc-dicomweb'], Exec['Build Orthanc']],
         cwd => '/root/orthanc-dicomweb',
         timeout => 0,
-        logoutput => "on_failure"
+        logoutput => "on_failure",
+        creates => '/usr/share/orthanc/plugins/libOrthancDicomWeb.so'
     } ->
     file { '/usr/share/orthanc/plugins/libOrthancDicomWeb.so':
         ensure  => file,

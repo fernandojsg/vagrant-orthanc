@@ -11,6 +11,11 @@ settings = {
   :guest_proj_dir => "/home/vagrant/sharedfolder",
   :memory => "1024",
   :ip => "192.168.33.10",
+  :proxy => {
+    :http => "http://10.201.32.8:8080/",
+    :https => "http://10.201.32.8:8080/",
+    :no_proxy => "localhost,127.0.0.1,10.*"
+  }
 }
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
@@ -22,6 +27,11 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # Every Vagrant virtual environment requires a box to build off of.
   config.vm.box = settings[:box]
 
+  if Vagrant.has_plugin?("vagrant-proxyconf") && settings[:proxy]!=false
+    config.proxy.http     = settings[:proxy][:http]
+    config.proxy.https    = settings[:proxy][:https]
+    config.proxy.no_proxy = settings[:proxy][:no_proxy]
+  end  
   # Hostname
   config.vm.host_name = "#{settings[:hostname]}.#{settings[:domain]}"
 
@@ -34,6 +44,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # Create a forwarded port mapping which allows access to a specific port
   # within the machine from a port on the host machine. In the example below,
   # accessing "localhost:8080" will access port 80 on the guest machine.
+  config.vm.network "forwarded_port", guest: 80, host: 8043
   config.vm.network "forwarded_port", guest: 8042, host: 8042
   config.vm.network "forwarded_port", guest: 4242, host: 4242
   # Uncomment the line below if you need to access postgresql from oustide the VM.
@@ -62,7 +73,12 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     puppet.manifests_path = "puppet/manifests"
     puppet.manifest_file  = "default.pp"
     puppet.module_path = "puppet/modules"
-    # Additional options "--verbose --debug"
+ puppet.facter = {
+      "http_proxy" =>  settings[:proxy][:http],
+      "https_proxy" => settings[:proxy][:https],
+      "guest_proj_dir" => settings[:guest_proj_dir]
+    }
+       # Additional options "--verbose --debug"
 
     puppet.options = "--hiera_config /vagrant/puppet/manifests/hiera.yaml --manifestdir /tmp/vagrant-puppet/manifests"
 

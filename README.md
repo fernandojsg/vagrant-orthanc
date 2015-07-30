@@ -11,9 +11,10 @@ This repository is based on the scripts from [OrthancDocker](https://github.com/
 - Builds [Orthanc DICOMWeb](https://bitbucket.org/sjodogne/orthanc-dicomweb/overview) **Lastest** plugin and loads it (dynamically linked)
 - Builds [Orthanc WebViewer](https://code.google.com/p/orthanc-webviewer/) **Lastest** plugin and loads it (dynamically linked)
 - Builds [Orthanc Postgresql](https://bitbucket.org/sjodogne/orthanc-postgresql) **Lastest** plugin and loads it (dynamically linked)
-- Install PostgreSQL and creates **orthanc** database.
+- Install **PostgreSQL** and creates **orthanc** database.
+- Install **nginx** and use it as a reverse proxy to allow (HTTP Proxy with [CORS](http://http://enable-cors.org/) requests.
 - Sets a fixed host-only IP at **192.168.33.10**
-- Forwards Orthanc ports **4242** (DICOM) and **8042** (HTTP)
+- Forwards Orthanc ports **4242** (DICOM), **8042** (HTTP) and **8043** (HTTP Proxy with [CORS](http://http://enable-cors.org/) enabled)
 - Sets up disk compression
 - Sets up Orthanc as a service with upstart
 

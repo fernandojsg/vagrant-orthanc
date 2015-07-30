@@ -25,7 +25,10 @@ class orthancpostgresql {
         require => [ Vcsrepo ['/root/orthanc-postgresql'], Exec['Build Orthanc']],
         cwd => '/root/orthanc-postgresql',
         timeout => 0,
-        logoutput => "on_failure"
+        logoutput => "on_failure",
+        creates => [ '/usr/share/orthanc/plugins/libOrthancPostgreSQLIndex.so',
+                     '/usr/share/orthanc/plugins/libOrthancPostgreSQLStorage.so']
+
     } ->
     file { '/usr/share/orthanc/plugins/libOrthancPostgreSQLIndex.so':
         ensure  => file,
