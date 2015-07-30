@@ -11,10 +11,10 @@ node default {
 
     Exec["apt-update"] -> Package <| |>
 
-    #include orthanc
-    #include orthancdicomweb
-    #include orthancwebviewer
-    #include orthancpostgresql
+    include orthanc
+    include orthancdicomweb
+    include orthancwebviewer
+    include orthancpostgresql
 
     class { 'nginx': }
     
@@ -24,13 +24,14 @@ node default {
             'HOST $host', 
             'X-Real-IP $remote_addr' 
         ],
-        add_header => {
-            'Access-Control-Allow-Origin' => '*',
-            'Access-Control-Allow-Credentials' => 'true',
-            'Access-Control-Allow-Methods' => 'GET, POST, OPTIONS',
-            'Access-Control-Allow-Headers' => 'DNT,X-CustomHeader,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type'
+        location_cfg_append  => {
+            add_header => {
+                "'Access-Control-Allow-Origin'" => "'*'",
+                "'Access-Control-Allow-Credentials'" => "'true'",
+                "'Access-Control-Allow-Methods'" => "'GET, POST, OPTIONS'",
+                "'Access-Control-Allow-Headers'" => "'DNT,X-CustomHeader,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type'"
+            },
         },
         rewrite_rules => ['/orthanc(.*) $1 break']
     }
-
 }
