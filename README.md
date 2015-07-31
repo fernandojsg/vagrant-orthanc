@@ -50,7 +50,7 @@ Or you can push DICOM to it:
 
 - IP Address: `192.168.33.10`
 - Port: `4242`
-- Called AE Title: `ORTHAC`
+- Called AE Title: `ORTHANC`
 
 ## Accessing the server
 
