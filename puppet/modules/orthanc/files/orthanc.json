@@ -238,7 +238,7 @@
     "Database" : "orthanc",
     "Username" : "pgorthancuser",
     "Password" : "pgorthancpass"
-  }
+  },
 
   "DicomWeb" : {
     "Enable" : true,         // Whether DICOMweb support is enabled
